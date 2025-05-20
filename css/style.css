@@ -188,7 +188,6 @@ header nav {
     gap: 100px;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/subtle-prism.svg");
     background-size: 300px;
 }
 
@@ -308,6 +307,7 @@ footer {
 }
 @media (max-width: 700px) {
         header nav {
+        background-image: url("../img/subtle-prism.svg");
         flex-direction: column;
         background-color: #fff;
         padding: 10px;
@@ -325,7 +325,6 @@ footer {
         padding: 10px 0;
         width: 100%;
     }
-
     .menu-button {
         display: block;
         background: none;
