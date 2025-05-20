@@ -1,165 +1,261 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html
+        x-data="{
+        darkMode: localStorage.getItem('darkMode') !== null
+          ? JSON.parse(localStorage.getItem('darkMode'))
+          : window.matchMedia('(prefers-color-scheme: dark)').matches,
+        toggle() {
+          this.darkMode = !this.darkMode;
+        }
+    }"
+        :class="{ 'dark': darkMode }"
+        x-init="
+        $watch('darkMode', value => localStorage.setItem('darkMode', value));
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          if(localStorage.getItem('darkMode') === null) {
+            darkMode = e.matches;
+          }
+        })
+    "
+        lang="cs"
+        class="scroll-smooth"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio Libora Hlaváče – moderní vývoj, solidní základy a spolehlivé nasazení. Fullstack vývojář se zájmem o DevOps a cloud.">
     <meta name="author" content="Libor Hlaváč">
-    <title>Libor Hlaváč – Fullstack vývojář | Moderní vývoj a nasazení</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Libor Hlaváč – Fullstack PHP/Laravel vývojář | Moderní vývoj a nasazení</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
     <link rel="stylesheet" href="./css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body>
-    <header x-data="{ open: false }">
-        <div class="logo-flex">
-            <div class="logo">
-                <a href="#"><img src="./img/logo.png" alt=""></a>
-                <a href="#">Libor Hlaváč <br/><span>Fullstack IT developer & Cellist</span></a>
-            </div>
-            <button class="menu-button" @click="open = !open">
-                &#9776;
-            </button>
-            <nav 
-                x-show="open || window.innerWidth >= 768"
-                x-transition
-                class="menu"
-                @resize.window="open = open"
-            >
-                <a href="index.html">Domů</a>
-                <a href="#o-mne">O mně</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#kontakt">Kontakt</a>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300">
+
+<!-- Navigace  -->
+<header x-data="{ open: false }" class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+
+        <!-- Logo & Jméno -->
+        <div class="flex items-center gap-3">
+            <a href="#" class="shrink-0">
+                <img src="./img/logo.png" alt="Logo" class="h-10 w-auto" :class="{ 'hidden': darkMode }">
+                <img src="./img/logo-dark.png" alt="Logo" class="h-10 w-auto" :class="{ 'hidden': !darkMode }">
+            </a>
+            <a href="#" class="leading-tight font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <span class="text-lg font-bold tracking-tight">Libor Hlaváč</span>
+                <span class="block text-xs text-slate-500 dark:text-slate-400 font-normal">Fullstack
+                    PHP Developer & Cellist</span>
+            </a>
+        </div>
+
+        <!-- Pravá strana: Menu + DarkMode přepínač -->
+        <div class="flex items-center gap-4">
+            <!-- Desktop Navigace -->
+            <nav class="hidden md:flex items-center gap-6 font-medium text-sm">
+                <a href="#o-mne" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">O mně</a>
+                <a href="#portfolio" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Portfolio</a>
+                <a href="#kontakt" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Kontakt</a>
             </nav>
-        </div>
-    </header>
 
-    <div class="social-icons">
-        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+            <!-- Tlačítko Tmavého režimu -->
+            <button @click="darkMode = !darkMode" aria-label="Přepnout tmavý režim" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-lg hover:ring-2 hover:ring-indigo-500 transition-all">
+                <span x-show="!darkMode">🌙</span>
+                <span x-show="darkMode" x-cloak>☀️</span>
+            </button>
+
+            <!-- Mobilní Hamburger Tlačítko -->
+            <button class="md:hidden p-2 text-2xl" @click="open = !open" aria-label="Menu">
+                <span x-show="!open">☰</span>
+                <span x-show="open" x-cloak>✕</span>
+            </button>
+        </div>
     </div>
 
-    <section id="o-mne" class="o-mne">
-        <div class="container">
-            <h1>Moderní vývoj. Solidní základy. Spolehlivé nasazení</h1>
-            <div class="o-mne-flex">
-                <div class="text">
-                <p>Jmenuji se Libor Hlaváč – vývojář, který kombinuje technické dovednosti s uměleckou precizností. Přes den tvořím webové a backendové aplikace, večer se věnuji hře na violoncello. Techniku a kreativitu propojuji každý den. </p>
-                <p>Specializuji se na vývoj moderních, responzivních aplikací. Mám zkušenosti jak s frontendem, tak s backendem, pracuji s technologiemi jako ASP.NET (C#), React, Node.js nebo Spring Boot (Java). Neustále se vzdělávám, a v poslední době se zaměřuji i na DevOps nástroje a cloudové služby (zejména Azure).</p>
+    <!-- Mobilní Dropdown Navigace -->
+    <nav x-show="open"
+         x-transition
+         @click.away="open = false"
+         class="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 flex flex-col gap-3 font-medium shadow-lg"
+         x-cloak>
+        <a href="#o-mne" @click="open = false" class="py-2 hover:text-indigo-600 dark:hover:text-indigo-400">O mně</a>
+        <a href="#portfolio" @click="open = false" class="py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Portfolio</a>
+        <a href="#kontakt" @click="open = false" class="py-2 hover:text-indigo-600 dark:hover:text-indigo-400">Kontakt</a>
+    </nav>
+</header>
+
+<!-- Plovoucí sociální sítě (Pouze na desktopu) -->
+<div class="hidden lg:flex flex-col gap-4 fixed left-6 top-1/2 -translate-y-1/2 z-40 text-2xl text-slate-400 dark:text-slate-500">
+    <a href="https://linkedin.com/in/tvuj-profil" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://github.com/liborh94" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"><i class="fa-brands fa-square-github"></i></a>
+    <a href="#" target="_blank" rel="noopener" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"><i class="fa-brands fa-square-facebook"></i></a>
+</div>
+
+<!-- Hero sekce / O mně -->
+<section id="o-mne" class="py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                    Moderní vývoj. Solidní základy. Spolehlivé nasazení.
+                </h1>
+                <div class="space-y-4 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p>Jmenuji se Libor Hlaváč – vývojář, který kombinuje technické dovednosti s uměleckou precizností. Přes den tvořím webové a backendové aplikace, večer se věnuji hře na violoncello. Techniku a kreativitu propojuji každý den.</p>
+                    <p>Specializuji se na vývoj moderních, responzivních aplikací od A do Z. Prioritou pro mě je psát bezpečný kód, který odolá hrozbám. Neustále se vzdělávám, aktuálně v oblastech <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Laravel, React a Linux</span>.</p>
                 </div>
-                <img src="./img/portrait.jpg" alt="portrét">
+            </div>
+            <div class="w-full max-w-sm md:w-1/3 shrink-0 rounded-2xl overflow-hidden shadow-2xl transform md:rotate-3 transition-transform hover:rotate-0 duration-300 border-4 border-white dark:border-slate-800">
+                <img src="./img/portrait.jpg" alt="portrét Libor Hlaváč" loading="lazy" class="w-full h-auto object-cover aspectRatio-[3/4]">
             </div>
         </div>
-    </section>
-    <section class="skills">
-        <div class="container">
-            <h3 class="center">Dovednosti podle oblastí:</h3>
-            <div class="line"></div>
-            <div data-aos="fade-right"
-            data-aos-delay="0"
-            data-aos-duration="800"
-            class="skill-block">
-                <h4>🔧 Moderní webový vývoj</h4>
-                <ul class="skill-list">
-                    <li><strong>HTML5 & CSS3</strong> – moderní, responzivní a mobile-first design.</li>
-                    <li></i><strong>JavaScript & TypeScript</strong> – tvorba interaktivních webů.</li>
-                    <li><strong>React</strong> – komponentový frontend, stavový management.</li>
-                    <li><strong>Git</strong> – verzování projektů, práce s GitHubem.</li>
-                </ul>
-            </div>
-            <div class="line"></div>
-
-            <div data-aos="fade-right"
-            data-aos-delay="50"
-            data-aos-duration="1000" 
-            class="skill-block">
-                <h4>🧠 Backend a logika aplikací</h4>
-                <ul class="skill-list">
-                    <li><strong>ASP .NET</strong> – REST API, robustní backendy.</li><li><strong>Java (Spring Boot)</strong> – REST API, robustní backendy.</li>
-                    <li><strong>PHP</strong> – Vývoj backendové logiky. Propojení s WordPress.</li>
-                    <li><strong>Node.js</strong> – API, jednoduché serverové aplikace.</li>
-                    <li><strong>Python</strong> – Základy OOP</li>
-                </ul>
-            </div>
-            <div class="line"></div>
-
-            <div data-aos="fade-right"
-            data-aos-delay="100"
-            data-aos-duration="1000" 
-            class="skill-block">
-                <h4>🗄️ Databáze a správa dat</h4>
-                <ul class="skill-list">
-                    <li><strong>MySQL & MS-SQL</strong> – návrh a tvorba databází, dotazy, relace.</li>
-                </ul>
-            </div>
-            <div class="line"></div>
-
-            <div data-aos="fade-right"
-            data-aos-delay="150"
-            data-aos-duration="1000" 
-            class="skill-block">
-                <h4>🧪 Testování a automatizace</h4>
-                <ul class="skill-list">
-                    <li><strong>Selenium</strong> – Základy automatického testování webových aplikací.</li>
-                </ul>
-            </div>
-            <div class="line"></div>
-
-            <div data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="1000" 
-            class="skill-block">
-                <h4>🧰 CMS a tvorba webů</h4>
-                <ul class="skill-list">
-                    <li><strong>WordPress – vlastní šablony</strong> – vývoj na míru, responzivita, přehlednost.</li>
-                </ul>
-            </div>
-            <div class="line"></div>
-
-            <div data-aos="fade-right"
-            data-aos-delay="250"
-            data-aos-duration="1000" 
-            class="skill-block">
-                <h4>🚢 V blízké budoucnosti:</h4>
-                <ul class="skill-list">
-                    <li><strong>Docker</strong> – kontejnerizace pro vývoj a nasazení.</li>
-                </ul>
-            </div>
-            <div class="line"></div>
-        </div>
-    </section>
-
-    <section id="portfolio">
-        <div class="container">
-            <h2 class="center">Projekty</h2>
-            <div class="line"></div>
-            <article class="project">
-                <h3>Invoice project</h3>
-                <p>Invoice project na ukládání faktur. Filtrace podle kupujícího a prodávajícího. Backend ve Spring Boot (Java), frontend v React.</p>
-            </article>
-            <div class="line"></div>
-            <article class="project">
-                <h3>Blogová platforma</h3>
-                <p>Blog postavený na Node.js, frontend na Typescript React.</p>
-            </article>
-            <div class="line"></div>
-            <article class="project">
-                <h3>ZUŠ Volyně</h3>
-                <p>Web Základní Umělecké Školy. WordPress s vlastní šablonou. CSS vlastní + Tailwind.</p>
-            </article>
-            <div class="line"></div>
-        </div>
-    </section>
-    <div class="social-icons-mobile">
-        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
     </div>
-    <footer>
-        <p>&copy; 2025 Libor Hlaváč – Všechna práva vyhrazena.</p>
-    </footer>
-    <script>AOS.init();</script>
-    <script src="./js/header.js"></script>
+</section>
+
+<!-- Sekce Dovednosti (Grid layout) -->
+<section class="py-16 bg-slate-100 dark:bg-slate-950/40 border-y border-slate-200 dark:border-slate-800/60">
+    <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
+        <h3 class="text-2xl font-bold text-center mb-2">Dovednosti podle oblastí</h3>
+        <div class="w-12 h-1 bg-indigo-500 mx-auto mb-10 rounded-full"></div>
+
+        <!-- Grid: na mobilu 1 sloupec, na tabletech 2, na desktopu 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Blok dovednosti -->
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🔧 Moderní webový vývoj</h4>
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li><strong class="text-slate-900 dark:text-slate-200">HTML5 & CSS3</strong> – moderní, responzivní a mobile-first design.</li>
+                    <li><strong class="text-slate-900 dark:text-slate-200">JavaScript</strong> – tvorba interaktivních webů.</li>
+                    <li><strong class="text-slate-900 dark:text-slate-200">React</strong> – komponentový frontend, stavový management.</li>
+                    <li><strong class="text-slate-900 dark:text-slate-200">Git</strong> – verzování projektů, práce s GitHubem.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🧠 Backend a logika</h4>
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li><strong class="text-slate-900 dark:text-slate-200">PHP (Laravel 11)</strong> – Robustní backendová logika, MVC, bezpečné REST API.</li>
+                    <li><strong class="text-slate-900 dark:text-slate-200">Java (Spring Boot)</strong> – Základy OOP, REST API.</li>
+                    <li><strong class="text-slate-900 dark:text-slate-200">Python</strong> – Základy OOP.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🗄️ Databáze a data</h4>
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li><strong class="text-slate-900 dark:text-slate-200">MySQL, SQLite</strong> – návrh a tvorba databází, SQL dotazy, optimalizace.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🧪 Testování</h4>
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li><strong class="text-slate-900 dark:text-slate-200">Pest</strong> – Feature a Browser testování, vysoké pokrytí kritických cest aplikací.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🧰 CMS a šablony</h4>
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li><strong class="text-slate-900 dark:text-slate-200">WordPress</strong> – vlastní šablony + ACF, vývoj na míru, responzivita.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200/60 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🚢 DevOps & Nasazení</h4>
+                <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                    <li><strong class="text-slate-900 dark:text-slate-200">Linux + Docker</strong> – (Učím se) kontejnerizace aplikací a příprava na automatizaci nasazení projektů na vlastní VPS.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Sekce Projekty -->
+<section id="portfolio" class="py-16">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-2xl font-bold text-center mb-2">Projekty</h2>
+        <div class="w-12 h-1 bg-indigo-500 mx-auto mb-10 rounded-full"></div>
+
+        <div class="space-y-8">
+            <!-- Projekt 1 -->
+            <article class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800" data-aos="fade-up">
+                <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Cinema Reservation System (Laravel 11)</h3>
+                <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                    Robustní backendový systém pro správu kin, kinosálů a promítání. Obsahuje plnou administraci (CRUD), pokročilé zabezpečení proti ID enumeration, generování PDF lístků s unikátními QR kódy a kompletní sadu feature testů v Pest frameworku.
+                </p>
+                <a href="https://github.com/liborh94/cinema" target="_blank" rel="noopener" class="inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+                    Zobrazit na GitHubu <span class="ml-1">→</span>
+                </a>
+            </article>
+
+            <!-- Projekt 2 -->
+            <article class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800" data-aos="fade-up">
+                <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Invoice project</h3>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Invoice project na ukládání faktur. Filtrace podle kupujícího a prodávajícího. Backend ve Spring Boot (Java), frontend v React.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Mobilní kontakty / patička -->
+<section id="kontakt" class="py-16 bg-slate-100 dark:bg-slate-950/40 border-t border-slate-200 dark:border-slate-800/60">
+    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+        <h2 class="text-2xl font-bold mb-2">Kontakt</h2>
+        <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
+
+        <p class="text-slate-600 dark:text-slate-300 max-w-md mx-auto mb-8 leading-relaxed">
+            Hledáš spolehlivého parťáka na vývoj aplikací? Napiš mi a probereme to.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-10 text-base md:text-lg">
+            <a href="mailto:tvuj-email@seznam.cz" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-400 transition-colors group">
+                <span class="text-indigo-500 group-hover:scale-110 transition-transform">✉️</span>
+                <span class="font-medium text-slate-700 dark:text-slate-200">tvuj-email@email.cz</span>
+            </a>
+            <div class="flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200">
+                <span class="text-indigo-500">📍</span>
+                <span class="font-medium">Česká republika</span>
+            </div>
+        </div>
+
+        <div class="flex justify-center gap-6 text-3xl">
+            <a href="https://linkedin.com/in/tvuj-profil" target="_blank" rel="noopener" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/liborh94" target="_blank" rel="noopener" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-label="GitHub">
+                <i class="fa-brands fa-square-github"></i>
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-label="Facebook">
+                <i class="fa-brands fa-square-facebook"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-slate-900 text-slate-400 text-center py-8 text-sm border-t border-slate-800">
+    <p>&copy; 2026 Libor Hlaváč – Všechna práva vyhrazena.</p>
+</footer>
+
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+<script src="./js/script.js"></script>
 </body>
 </html>

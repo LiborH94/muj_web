@@ -82,11 +82,16 @@ ul li {
 .container {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(4px);
-    border-radius: 10px;
     padding: 20px;
     width: 85%;
     margin: auto;
     border-radius: 20px 20px;
+}
+.dark .container {
+    background: rgba(5, 5, 35, 0.8);
+}
+.dark p {
+    color: white;
 }
 a {
     display: inline-block;
@@ -95,11 +100,17 @@ a {
     font-weight: 700;
     transition: 0.3s ease-in-out;
 }
+.dark a {
+    color: white;
+}
 a:hover {
     transform: scale(1.1);
     color: #130f4a;
     text-decoration: underline solid #130f4a;
     text-underline-offset: 6px;
+}
+.dark a:hover {
+    color: #3d34b8;
 }
 .btn {
     background-color: #384664;
@@ -125,6 +136,17 @@ html, body {
     Header
 
 **********************************/
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+.toggle-btn:hover {
+  transform: scale(1.2);
+}
 .logo-flex {
     background-image: url("../img/subtle-prism.svg");
     display: flex;
@@ -134,6 +156,9 @@ html, body {
     background-color:#edecec;
     position: relative; /* Důležité pro pozicování mobilního menu */
     z-index: 1000; /* Ujistěte se, že header je nad obsahem */
+}
+.dark .logo-flex {
+    background-image: url("../img/subtle-prism-dark.svg");
 }
 .social-icons i {
     font-size: 35px;
@@ -158,15 +183,19 @@ html, body {
 .social-icons-mobile .fa-linkedin:hover {
     color: #0A66C2;
 }
+.hidden {
+  display: none !important;
+}
 .logo {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
     font-size: 30px;
     text-align: left;
     padding-left: 15px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 .logo img {
     width: 60px;
 }
@@ -180,21 +209,26 @@ html, body {
     color: black;
     text-decoration: none;
 }
+.dark .logo a:hover {
+    color: white;
+    text-decoration: none;
+}
 header nav {
     font-size: 22px;
-    width: 60%;
     display: flex;
     list-style: none;
-    gap: 100px;
-    justify-content: center;
+    gap: 40px;
+    justify-content: space-between;
     align-items: center;
-    background-image: url("../img/subtle-prism.svg");
     background-size: 300px;
 }
 
 .menu-button {
     display: none;
     padding-right: 10px;
+}
+.dark .menu-button {
+    color: white;
 }
 .menu.open {
     display: flex;
@@ -210,16 +244,38 @@ body {
     background-size: 260px;
     background-repeat: repeat;
     background-position: center;
-    background-attachment: scroll;
+    background-attachment: fixed;
 }
 body:before {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(167, 164, 158, 0.5);
     z-index: -1;
     pointer-events: none;
     will-change: opacity;
+}
+.dark body {
+    background-image: url("../img/background-dark.png");
+}
+.dark body:before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(16, 15, 54, 0.61);
+    z-index: -1;
+    pointer-events: none;
+    will-change: opacity;
+}
+.dark section h1,
+.dark section h2,
+.dark section h3, 
+.dark section h4, 
+.dark section h5 {
+    color: white;
+}
+.dark ul li {
+    color: white;
 }
 section {
     padding: 30px 0px;
@@ -266,6 +322,9 @@ section h2 {
 .hero p {
     color: #333;
 }
+.dark hero p {
+    color: white;
+}
 .center {
     text-align: center;
 }
@@ -275,17 +334,26 @@ section h2 {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     justify-items: stretch;
     align-items: baseline;
-    
+}
+.skill-block.animace {
+    animation: slideIn 1s ease-in-out;
+    opacity: 1;
 }
 .skill-block h4 {
     padding: 15px 0;
     color: #384664;
+}
+.dark .skill-block h4 {
+    color: #7f9ae3;
 }
 .line {
   height: 2px;
   background: linear-gradient(to right, transparent,  #384664, transparent);
   margin-top: 15px;
   border-radius: 2px;
+}
+.dark .line {
+  background: linear-gradient(to right, transparent,  #787dd3, transparent);
 }
 .project h3 {
     padding-top: 10px;
@@ -298,6 +366,9 @@ footer {
     padding: 20px;
     background-color: #edecec;
 }
+.dark footer {
+    background-image: url("../img/subtle-prism-dark.svg");
+}
 /**********************************
     Responziv
 **********************************/
@@ -307,7 +378,8 @@ footer {
     }
 }
 @media (max-width: 700px) {
-        header nav {
+    header nav {
+        background-image: url("../img/subtle-prism.svg");
         flex-direction: column;
         background-color: #fff;
         padding: 10px;
@@ -315,17 +387,34 @@ footer {
         top: 100%;
         left: 0;
         width: 100%;
-        gap: 10px;
+        gap: 5px;
         text-align: center;
         border-radius: 0 0 20px 20px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         z-index: 999;
     }
+    .logoflex {
+        align-items: center;
+    }
+    .logo-flex .item3 {
+        order: 3;
+        justify-content: flex-end;
+    }
+    .logo-flex .item2 {
+        order: 1;
+
+    }
+    .logo-flex .item1 {
+        order: 2;
+        text-align: center;
+    }
+    .dark header nav {
+        background-image: url("../img/subtle-prism-dark.svg");
+    }
     header nav a {
         padding: 10px 0;
         width: 100%;
     }
-
     .menu-button {
         display: block;
         background: none;
@@ -370,7 +459,7 @@ footer {
         font-size: 15px;
     }
     .logo-flex {
-        padding: 0 10px;
+        padding: 0 6px;
     }
     h1 {
         font-size: 30px;
@@ -378,7 +467,19 @@ footer {
     .o-mne-flex {
         gap: 20px;
     }
-
+}
+/*******************
+Keyframes
+********************/
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(200px);
+        display: none;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 
