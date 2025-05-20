@@ -3,92 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libor Hlaváč - Webmaster | Violoncellista</title>
+    <meta name="description" content="Portfolio Libora Hlaváče – moderní vývoj, solidní základy a spolehlivé nasazení. Fullstack vývojář se zájmem o DevOps a cloud.">
+    <meta name="author" content="Libor Hlaváč">
+    <title>Libor Hlaváč – Fullstack vývojář | Moderní vývoj a nasazení</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-flex">
-            <div class="logo"><a href="#">Libor Hlaváč <br/>
-                Webmaster/Violoncellista</a></div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Domů</a></li>
-                    <li><a href="o-mne.html">O mně</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
-                </ul>
+    <header x-data="{ open: false }">
+        <div class="logo-flex">
+            <div class="logo">
+                <a href="#"><img src="./img/logo.png" alt=""></a>
+                <a href="#">Libor Hlaváč <br/><span>Fullstack IT developer & Cellist</span></a>
+            </div>
+            <button class="menu-button" @click="open = !open">
+                &#9776;
+            </button>
+            <nav 
+                x-show="open || window.innerWidth >= 768"
+                x-transition
+                class="menu"
+                @resize.window="open = open"
+            >
+                <a href="index.html">Domů</a>
+                <a href="#o-mne">O mně</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#kontakt">Kontakt</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
+    <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+    </div>
+
+    <section id="o-mne" class="o-mne">
         <div class="container">
-            <h1>Weby s duší… i s hudbou</h1>
-            <p>Jsem Libor Hlaváč – web developer a zároveň violoncellista v Jihočeském divadle. Ve dne kóduju weby, večer hraju na pódiu. Spojuju techniku s kreativitou.</p>
-            <a href="portfolio.html" class="btn">Moje práce</a>
+            <h1>Moderní vývoj. Solidní základy. Spolehlivé nasazení</h1>
+            <div class="o-mne-flex">
+                <div class="text">
+                <p>Jmenuji se Libor Hlaváč – vývojář, který kombinuje technické dovednosti s uměleckou precizností. Přes den tvořím webové a backendové aplikace, večer se věnuji hře na violoncello. Techniku a kreativitu propojuji každý den. </p>
+                <p>Specializuji se na vývoj moderních, responzivních aplikací. Mám zkušenosti jak s frontendem, tak s backendem, pracuji s technologiemi jako ASP.NET (C#), React, Node.js nebo Spring Boot (Java). Neustále se vzdělávám, a v poslední době se zaměřuji i na DevOps nástroje a cloudové služby (zejména Azure).</p>
+                </div>
+                <img src="./img/portrait.jpg" alt="portrét">
+            </div>
+        </div>
+    </section>
+    <section class="skills">
+        <div class="container">
+            <h3 class="center">Dovednosti podle oblastí:</h3>
+            <div class="line"></div>
+            <div data-aos="fade-right"
+            data-aos-delay="0"
+            data-aos-duration="800"
+            class="skill-block">
+                <h4>🔧 Moderní webový vývoj</h4>
+                <ul class="skill-list">
+                    <li><strong>HTML5 & CSS3</strong> – moderní, responzivní a mobile-first design.</li>
+                    <li></i><strong>JavaScript & TypeScript</strong> – tvorba interaktivních webů.</li>
+                    <li><strong>React</strong> – komponentový frontend, stavový management.</li>
+                    <li><strong>Git</strong> – verzování projektů, práce s GitHubem.</li>
+                </ul>
+            </div>
+            <div class="line"></div>
+
+            <div data-aos="fade-right"
+            data-aos-delay="50"
+            data-aos-duration="1000" 
+            class="skill-block">
+                <h4>🧠 Backend a logika aplikací</h4>
+                <ul class="skill-list">
+                    <li><strong>ASP .NET</strong> – REST API, robustní backendy.</li><li><strong>Java (Spring Boot)</strong> – REST API, robustní backendy.</li>
+                    <li><strong>PHP</strong> – Vývoj backendové logiky. Propojení s WordPress.</li>
+                    <li><strong>Node.js</strong> – API, jednoduché serverové aplikace.</li>
+                    <li><strong>Python</strong> – Základy OOP</li>
+                </ul>
+            </div>
+            <div class="line"></div>
+
+            <div data-aos="fade-right"
+            data-aos-delay="100"
+            data-aos-duration="1000" 
+            class="skill-block">
+                <h4>🗄️ Databáze a správa dat</h4>
+                <ul class="skill-list">
+                    <li><strong>MySQL & MS-SQL</strong> – návrh a tvorba databází, dotazy, relace.</li>
+                </ul>
+            </div>
+            <div class="line"></div>
+
+            <div data-aos="fade-right"
+            data-aos-delay="150"
+            data-aos-duration="1000" 
+            class="skill-block">
+                <h4>🧪 Testování a automatizace</h4>
+                <ul class="skill-list">
+                    <li><strong>Selenium</strong> – Základy automatického testování webových aplikací.</li>
+                </ul>
+            </div>
+            <div class="line"></div>
+
+            <div data-aos="fade-right"
+            data-aos-delay="200"
+            data-aos-duration="1000" 
+            class="skill-block">
+                <h4>🧰 CMS a tvorba webů</h4>
+                <ul class="skill-list">
+                    <li><strong>WordPress – vlastní šablony</strong> – vývoj na míru, responzivita, přehlednost.</li>
+                </ul>
+            </div>
+            <div class="line"></div>
+
+            <div data-aos="fade-right"
+            data-aos-delay="250"
+            data-aos-duration="1000" 
+            class="skill-block">
+                <h4>🚢 V blízké budoucnosti:</h4>
+                <ul class="skill-list">
+                    <li><strong>Docker</strong> – kontejnerizace pro vývoj a nasazení.</li>
+                </ul>
+            </div>
+            <div class="line"></div>
         </div>
     </section>
 
-    <!-- About section -->
-    <section class="o-mne">
+    <section id="portfolio">
         <div class="container">
-            <h2>O mně</h2>
-            <p>Jmenuji se Libor Hlaváč a pohybuji se mezi světem hudby a světem technologií. Přes den tvořím weby, večer hraju na violoncello v Jihočeském divadle. Kódování je pro mě jako hudba – má mít rytmus, logiku i emoce.</p>
-        
-            <p>Jsem webový vývojář, který se neustále vzdělává a zdokonaluje ve svých dovednostech. Mám zkušenosti jak s frontendovým, tak s backendovým vývojem. Můj přístup k vývoji je kreativní, zaměřuji se na moderní, responzivní design s důrazem na uživatelskou přívětivost. Prioritu dávám mobile-first přístupu a neustále hledám efektivní a inovativní řešení pro každý projekt.</p>
-            
-            <h3>Co umím: </h3>
-            <ul class="skill-list">
-                <li><i class="fa-brands fa-html5"></i><i class="fa-brands fa-css3-alt"></i><strong>HTML5 a CSS3</strong> – tvorba webových stránek a aplikací s důrazem na moderní design, responzivitu a mobile-first přístup.</li>
-                <li><i class="fa-brands fa-js"></i><strong>Moderní JavaScript & TypeScript</strong> – vývoj interaktivních a dynamických aplikací s využitím moderních nástrojů.</li>
-                <li><i class="fa-brands fa-react"></i><strong>React</strong> – tvorba komponent a stavového managementu pro moderní frontendové aplikace.</li>
-                <li><i class="fa-brands fa-php"></i><strong>PHP (Nette)</strong> – vývoj webových aplikací s PHP a frameworkem Nette, momentálně se v této oblasti stále zdokonaluji..</li>
-                <li><i class="fa-brands fa-node"></i><strong>Node.js</strong> – základní zkušenosti s vývojem backendových aplikací pomocí Node.js.</li>
-                <li><i class="fa-brands fa-wordpress"></i><strong>WordPress – vlastní šablony</strong> –  tvorba a přizpůsobení šablon pro WordPress.</li>
-                <li><i class="fa-solid fa-database"></i><strong>MySQL</strong> – správa databází a efektivní práce s daty.</li>
-                <li><i class="fa-brands fa-java"></i><strong>Java (Spring Boot)</strong> - základní znalosti vývoje backendu a tvorby REST API pro robustní a škálovatelné aplikace.</li>
-                <li><i class="fa-brands fa-python"></i><strong>Python</strong> - základní syntaxe, objektově orientované programování (OOP), experimentování s knihovnami pro různé úkoly.</li>
-                <li><i class="fa-solid fa-robot"></i><strong>Selenium</strong> – automatizace testování webových aplikací a interakcí s uživatelským rozhraním.</li>
-                <li><i class="fa-brands fa-github"></i><strong>Git</strong> – správa verzí u projektů s použitím Git a GitHub.</li>
-            </ul>
-
-            <h3>V blízké budoucnosti plánuji se naučit:</h3>
-            <ul class="skill-list">
-                <li><i class="fa-brands fa-docker"></i><strong>Docker</strong> – kontejnerizace aplikací pro usnadnění vývoje, nasazení a správu.</li>
-            </ul>
-        
-            <p>Rád se neustále vzdělávám, testuji nové nástroje a technologie a vnímám webový vývoj jako kreativní a praktickou výzvu.</p>
-        </div>
-    </section>
-
-    <!-- Portfolio section -->
-    <section class="mini-portfolio">
-        <div class="container">
-            <h2>Vybrané projekty</h2>
-            <article>
-                <h3>Blog o vaření</h3>
-                <p>WordPress šablona pro food blogerku. Tvorba šablony a úpravy podle požadavků.</p>
+            <h2 class="center">Projekty</h2>
+            <div class="line"></div>
+            <article class="project">
+                <h3>Invoice project</h3>
+                <p>Invoice project na ukládání faktur. Filtrace podle kupujícího a prodávajícího. Backend ve Spring Boot (Java), frontend v React.</p>
             </article>
-            <article>
-                <h3>Kavárna Na rohu</h3>
-                <p>Firemní web s menu, fotkami a kontaktním formulářem. Postaveno na WordPressu.</p>
+            <div class="line"></div>
+            <article class="project">
+                <h3>Blogová platforma</h3>
+                <p>Blog postavený na Node.js, frontend na Typescript React.</p>
             </article>
-            <a href="portfolio.html">Zobrazit celé portfolio</a>
+            <div class="line"></div>
+            <article class="project">
+                <h3>ZUŠ Volyně</h3>
+                <p>Web Základní Umělecké Školy. WordPress s vlastní šablonou. CSS vlastní + Tailwind.</p>
+            </article>
+            <div class="line"></div>
         </div>
     </section>
-
-    <!-- Call to action (kontakt) -->
-    <section class="kontakt-akce">
-        <div class="container">
-            <h2>Chceš spolupracovat?</h2>
-            <a href="kontakt.html" class="btn">Napiš mi</a>
-        </div>
-    </section>
-
+    <div class="social-icons-mobile">
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+    </div>
     <footer>
-        <p>&copy; 2025 Libor Hlaváč</p>
+        <p>&copy; 2025 Libor Hlaváč – Všechna práva vyhrazena.</p>
     </footer>
+    <script>AOS.init();</script>
+    <script src="./js/header.js"></script>
 </body>
 </html>
