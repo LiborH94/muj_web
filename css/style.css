@@ -125,16 +125,8 @@ html, body {
     Header
 
 **********************************/
-<<<<<<< HEAD
 .logo-flex {
     background-image: url("../img/subtle-prism.svg");
-=======
-
-ul li {
-    list-style: none;
-}
-.header-flex {
->>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -204,19 +196,15 @@ header nav {
     display: none;
     padding-right: 10px;
 }
-<<<<<<< HEAD
 .menu.open {
     display: flex;
 }
-=======
->>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
 
 /**********************************
 
     Body
 
 **********************************/
-<<<<<<< HEAD
 body {
     background-image: url('../img/background.png');
     background-size: 260px;
@@ -233,9 +221,6 @@ body:before {
     pointer-events: none;
     will-change: opacity;
 }
-=======
-
->>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
 section {
     padding: 30px 0px;
 }
@@ -306,23 +291,12 @@ section h2 {
     padding-top: 10px;
 }
 /**********************************
-<<<<<<< HEAD
     Footer
 **********************************/
 footer {
     text-align: center;
     padding: 20px;
     background-color: #edecec;
-=======
-
-    Fontawesome icons
-
-**********************************/
-
-.skill-list i {
-    font-size: 30px;
-    width: 5%;
->>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
 }
 /**********************************
     Responziv
