@@ -1,11 +1,15 @@
 /* reset */
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+
 /* fonty */
+
 /* playfair-display-regular - cyrillic_latin_latin-ext */
+
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Playfair Display';
@@ -13,7 +17,9 @@
     font-weight: 400;
     src: url('../fonts/playfair-display-v37-cyrillic_latin_latin-ext-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* playfair-display-700 - cyrillic_latin_latin-ext */
+
   @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Playfair Display';
@@ -21,7 +27,9 @@
     font-weight: 700;
     src: url('../fonts/playfair-display-v37-cyrillic_latin_latin-ext-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* lora-regular - cyrillic_cyrillic-ext_latin_latin-ext_math_symbols */
+
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Lora';
@@ -29,7 +37,9 @@
     font-weight: 400;
     src: url('../fonts/lora-v35-cyrillic_cyrillic-ext_latin_latin-ext_math_symbols-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
 /* lora-700 - cyrillic_cyrillic-ext_latin_latin-ext_math_symbols */
+
   @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Lora';
@@ -40,6 +50,12 @@
 [x-cloak] {
     display: none !important;
 }
+
+/********************************
+
+    Basics
+
+*********************************/
 
 h1, h2, h3, h4, h5 {
     font-family: 'Playfair Display', serif;
@@ -104,12 +120,21 @@ html, body {
     overflow-x: hidden;
 }
 
-
 /**********************************
+
     Header
+
 **********************************/
+<<<<<<< HEAD
 .logo-flex {
     background-image: url("../img/subtle-prism.svg");
+=======
+
+ul li {
+    list-style: none;
+}
+.header-flex {
+>>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -179,13 +204,19 @@ header nav {
     display: none;
     padding-right: 10px;
 }
+<<<<<<< HEAD
 .menu.open {
     display: flex;
 }
+=======
+>>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
 
 /**********************************
+
     Body
+
 **********************************/
+<<<<<<< HEAD
 body {
     background-image: url('../img/background.png');
     background-size: 260px;
@@ -202,6 +233,9 @@ body:before {
     pointer-events: none;
     will-change: opacity;
 }
+=======
+
+>>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
 section {
     padding: 30px 0px;
 }
@@ -272,12 +306,23 @@ section h2 {
     padding-top: 10px;
 }
 /**********************************
+<<<<<<< HEAD
     Footer
 **********************************/
 footer {
     text-align: center;
     padding: 20px;
     background-color: #edecec;
+=======
+
+    Fontawesome icons
+
+**********************************/
+
+.skill-list i {
+    font-size: 30px;
+    width: 5%;
+>>>>>>> 9f42460a43ef2cf06430121bebd66ebe8c987285
 }
 /**********************************
     Responziv
