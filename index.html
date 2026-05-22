@@ -36,34 +36,53 @@
     </script>
 
     <link rel="stylesheet" href="./css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body
         class="relative bg-slate-50/10 dark:bg-slate-900/10 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-300 overflow-x-hidden"
 >
-<!-- Navigace  -->
-    <header x-data="{ open: false }" class="sticky top-0 z-50 backdrop-blur-lg bg-white/40 dark:bg-slate-900/40 border-b border-white/20 dark:border-slate-800/50 shadow-sm">    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
+<div class="fixed inset-0 -z-10 bg-slate-50 dark:bg-gray-500 transition-colors duration-300">
+    <div
+            class="absolute inset-0 bg-repeat bg-center opacity-65 dark:hidden"
+            style="
+                background-image: url('./img/background.png');
+                background-size: 180px;"
+    ></div>
+
+    <!-- Dark mode obrázek -->
+    <div
+            class="absolute inset-0 bg-repeat bg-center opacity-40 hidden dark:block invert"
+            style="
+                background-image: url('./img/background-dark.png');
+                background-size: 180px;"
+    ></div>
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-slate-50/70 dark:from-slate-900/80 dark:via-indigo-950/40 dark:to-slate-950/90"></div>
+</div>
+
+<!-- Navigace  -->
+<header x-data="{ open: false }"
+        class="z-50 backdrop-blur-lg bg-gray-300/50 dark:bg-slate-900/40 dark:border-slate-800/50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
         <!-- Logo & Jméno -->
         <div class="flex items-center gap-3">
             <a href="#" class="shrink-0">
-                <img src="./img/logo.png" alt="Logo" class="h-14 md:h-16" :class="{ 'hidden': darkMode }">
-                <img src="./img/logo-dark.png" alt="Logo" class="h-14 md:h-16" :class="{ 'hidden': !darkMode }">
+                <img src="./img/logo.png" alt="Logo" class="h-16 md:h-20" :class="{ 'hidden': darkMode }">
+                <img src="./img/logo-dark.png" alt="Logo" class="h-16 md:h-20" :class="{ 'hidden': !darkMode }">
             </a>
             <a href="#" class="leading-tight font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                 <span class="text-lg font-bold tracking-tight">Libor Hlaváč</span>
-                <span class="block text-xs text-slate-500 dark:text-slate-400 font-normal">Fullstack
-                    PHP Developer & Cellist</span>
+                <span class="block text-xs text-slate-500 dark:text-slate-400 font-normal">Fullstack PHP Developer & Cellist</span>
             </a>
         </div>
 
         <!-- Pravá strana: Menu + DarkMode přepínač -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
             <!-- Desktop Navigace -->
-            <nav class="hidden md:flex items-center gap-6 font-medium text-sm">
+            <nav class="hidden md:flex items-center gap-6 md:gap-10 font-medium text-sm">
                 <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Domů</a>
                 <a href="#o-mne" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">O mně</a>
                 <a href="#portfolio" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Portfolio</a>
@@ -71,7 +90,8 @@
             </nav>
 
             <!-- Tlačítko Tmavého režimu -->
-            <button @click="darkMode = !darkMode" aria-label="Přepnout tmavý režim" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-lg hover:ring-2 hover:ring-indigo-500 transition-all">
+            <button @click="darkMode = !darkMode" aria-label="Přepnout tmavý režim"
+                    class="md:ml-6 p-2 rounded-lg text-lg hover:ring-2 hover:ring-indigo-500 transition-all">
                 <span x-show="!darkMode">🌙</span>
                 <span x-show="darkMode" x-cloak>☀️</span>
             </button>
@@ -98,48 +118,39 @@
 </header>
 
 <!-- Plovoucí sociální sítě (Pouze na desktopu) -->
-<div
-        class="hidden lg:flex flex-col gap-4 fixed left-10 top-1/2 -translate-y-1/2 z-40 text-2xl text-slate-600 dark:text-slate-500">
-    <a href="https://linkedin.com/in/libor-hlaváč-7821ba324" target="_blank" rel="noopener"
-       class="hover:text-[#0A66C2] dark:hover:text-indigo-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="https://github.com/liborh94" target="_blank" rel="noopener"
-       class="hover:text-black dark:hover:text-white transition-colors"><i
-            class="fa-brands fa-square-github"></i></a>
+<div class="hidden lg:flex flex-col gap-4 fixed left-10 top-1/2 -translate-y-1/2 z-40 text-2xl text-slate-600 dark:text-slate-500">
+    <a href="https://linkedin.com/in/libor-hlaváč-7821ba324" target="_blank" rel="noopener" class="hover:text-[#0A66C2] dark:hover:text-indigo-400 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://github.com/liborh94" target="_blank" rel="noopener" class="hover:text-black dark:hover:text-white transition-colors"><i class="fa-brands fa-square-github"></i></a>
     <a href="https://facebook.com/LibaHl" target="_blank" rel="noopener" class="hover:text-[#1877F2] transition-colors"><i class="fa-brands fa-square-facebook"></i></a>
 </div>
 
 <!-- Hero sekce / O mně -->
-<section id="o-mne"
-         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
-        <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
-            <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
-                <div class="flex-1 text-center md:text-left">
-                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                        Moderní vývoj. Solidní základy. Spolehlivé nasazení.
-                    </h1>
-                    <div class="space-y-4 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <p>Jmenuji se Libor Hlaváč – vývojář, který kombinuje technické dovednosti s uměleckou precizností. Přes den tvořím webové a backendové aplikace, večer se věnuji hře na violoncello. Techniku a kreativitu propojuji každý den.</p>
-                        <p>Specializuji se na vývoj moderních, responzivních aplikací od A do Z. Prioritou pro mě je psát bezpečný kód, který odolá hrozbám. Neustále se vzdělávám, aktuálně v oblastech <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Laravel, React a Linux</span>.</p>
-                    </div>
-                </div>
-                <div class="w-full max-w-sm md:w-1/3 shrink-0 rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
-                    <img src="./img/portrait.jpg" alt="portrét Libor Hlaváč" loading="lazy" class="w-full h-auto object-cover aspectRatio-[3/4]">
+<section id="o-mne" class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                    Moderní vývoj. Solidní základy. Spolehlivé nasazení.
+                </h1>
+                <div class="space-y-4 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p>Jmenuji se Libor Hlaváč – vývojář, který kombinuje technické dovednosti s uměleckou precizností. Přes den tvořím webové a backendové aplikace, večer se věnuji hře na violoncello. Techniku a kreativitu propojuji každý den.</p>
+                    <p>Specializuji se na vývoj moderních, responzivních aplikací od A do Z. Prioritou pro mě je psát bezpečný kód, který odolá hrozbám. Neustále se vzdělávám, aktuálně v oblastech <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Laravel, React a Linux</span>.</p>
                 </div>
             </div>
+            <div class="w-full max-w-sm md:w-1/3 shrink-0 rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+                <img src="./img/portrait.jpg" alt="portrét Libor Hlaváč" loading="lazy" class="w-full h-auto object-cover aspect-[3/4]">
+            </div>
         </div>
+    </div>
 </section>
 
 <!-- Sekce Dovednosti (Grid layout) -->
-<section
-        class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
-    <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
+<section class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
+    <div class="max-w-5xl mx-auto px-4">
         <h3 class="text-2xl font-bold text-center mb-2">Dovednosti podle oblastí</h3>
         <div class="w-12 h-1 bg-indigo-500 mx-auto mb-10 rounded-full"></div>
 
-        <!-- Grid: na mobilu 1 sloupec, na tabletech 2, na desktopu 3 -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Blok dovednosti -->
             <div class="backdrop-blur-md bg-white/50 dark:bg-slate-900/50 p-6 rounded-xl shadow-lg border border-white/40 dark:border-slate-800/60">
                 <h4 class="font-bold text-lg text-indigo-600 dark:text-indigo-400 mb-3 flex items-center gap-2">🔧 Moderní webový vývoj</h4>
                 <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
@@ -186,7 +197,6 @@
                     <li><strong class="text-slate-900 dark:text-slate-200">Linux + Docker</strong> – (Učím se) kontejnerizace aplikací a příprava na automatizaci nasazení projektů na vlastní VPS.</li>
                 </ul>
             </div>
-
         </div>
     </div>
 </section>
@@ -198,8 +208,7 @@
         <div class="w-12 h-1 bg-indigo-500 mx-auto mb-10 rounded-full"></div>
 
         <div class="space-y-8">
-            <!-- Projekt 1 -->
-            <article class="backdrop-blur-md bg-white/50 dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl shadow-lg border border-white/40 dark:border-slate-800/60" data-aos="fade-up">
+            <article class="backdrop-blur-md bg-white/50 dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl shadow-lg border border-white/40 dark:border-slate-800/60">
                 <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Cinema Reservation System (Laravel 11)</h3>
                 <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
                     Robustní backendový systém pro správu kin, kinosálů a promítání. Obsahuje plnou administraci (CRUD), pokročilé zabezpečení proti ID enumeration, generování PDF lístků s unikátními QR kódy a kompletní sadu feature testů v Pest frameworku.
@@ -209,9 +218,7 @@
                 </a>
             </article>
 
-            <!-- Projekt 2 -->
-            <article
-                    class="backdrop-blur-md bg-white/50 dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl shadow-lg border border-white/40 dark:border-slate-800/60" data-aos="fade-up">
+            <article class="backdrop-blur-md bg-white/50 dark:bg-slate-900/50 p-6 md:p-8 rounded-2xl shadow-lg border border-white/40 dark:border-slate-800/60">
                 <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Invoice project</h3>
                 <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
                     Invoice project na ukládání faktur. Filtrace podle kupujícího a prodávajícího. Backend ve Spring Boot (Java), frontend v React.
@@ -231,7 +238,7 @@
 
 <!-- Mobilní kontakty / patička -->
 <section id="kontakt" class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
-    <div class="max-w-4xl mx-auto px-4 text-center" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-2xl font-bold mb-2">Kontakt</h2>
         <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
 
@@ -252,58 +259,23 @@
         </div>
 
         <div class="flex justify-center gap-6 text-3xl text-slate-600">
-            <a href="https://linkedin.com/in/libor-hlaváč-7821ba324" target="_blank" rel="noopener"
-               class=" hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
+            <a href="https://linkedin.com/in/libor-hlaváč-7821ba324" target="_blank" rel="noopener" class=" hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
-            <a href="https://github.com/liborh94" target="_blank" rel="noopener"
-               class="hover:text-black dark:hover:text-white transition-colors"
-               aria-label="GitHub">
+            <a href="https://github.com/liborh94" target="_blank" rel="noopener" class="hover:text-black dark:hover:text-white transition-colors" aria-label="GitHub">
                 <i class="fa-brands fa-square-github"></i>
             </a>
-            <a href="https://facebook.com/LibaHl" target="_blank" rel="noopener"
-               class="hover:text-[#1877F2] transition-colors" aria-label="Facebook">
+            <a href="https://facebook.com/LibaHl" target="_blank" rel="noopener" class="hover:text-[#1877F2] transition-colors" aria-label="Facebook">
                 <i class="fa-brands fa-square-facebook"></i>
             </a>
         </div>
     </div>
 </section>
 
-<footer
-        class="bg-slate-500/70 dark:bg-slate-900/70 backdrop-blur-md text-slate-600 dark:text-slate-400 text-center py-8 text-sm border-t border-slate-800">
+<footer class="bg-slate-500/70 dark:bg-slate-900/70 backdrop-blur-md text-slate-600 dark:text-slate-400 text-center py-8 text-sm">
     <p>&copy; 2026 Libor Hlaváč – Všechna práva vyhrazena.</p>
 </footer>
 
-<script>
-    AOS.init({
-        duration: 800,
-        once: true,
-        disable: function() {
-            return window.innerWidth < 768;
-        }
-    });
-</script>
 <script src="./js/script.js"></script>
 </body>
-<!-- Background -->
-<div class="fixed inset-0 -z-10 bg-slate-50 dark:bg-gray-500 transition-colors duration-300">
-    <!-- Light mode obrázek -->
-    <div
-            class="absolute inset-0 bg-repeat bg-center opacity-65 dark:hidden"
-            style="
-                background-image: url('./img/background.png');
-                background-size: 180px;"
-    ></div>
-
-    <!-- Dark mode obrázek -->
-    <div
-            class="absolute inset-0 bg-repeat bg-center opacity-40 hidden dark:block invert"
-            style="
-                background-image: url('./img/background-dark.png');
-                background-size: 180px;"
-    ></div>
-
-    <!-- Gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/40 to-slate-50/70 dark:from-slate-900/80 dark:via-indigo-950/40 dark:to-slate-950/90"></div>
-</div>
 </html>
