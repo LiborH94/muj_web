@@ -42,31 +42,33 @@
         class="relative bg-slate-50/10 dark:bg-slate-900/10 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-300 overflow-x-hidden"
 >
 
-<div class="fixed inset-0 -z-10 overflow-hidden bg-slate-50 dark:bg-slate-950">
+<div class="absolute md:fixed inset-0 -z-10 bg-slate-50 dark:bg-slate-950">
 
     <!-- LIGHT -->
     <div
-            class="absolute inset-0 dark:hidden bg-repeat bg-center"
+            class="absolute inset-0 dark:hidden"
             style="
             background-image: url('./img/background.png');
             background-size: 180px;
+            background-repeat: repeat;
+            background-position: center;
             transform: translateZ(0);
-            will-change: transform;
         ">
     </div>
 
     <!-- DARK -->
     <div
-            class="absolute inset-0 hidden dark:block bg-repeat bg-center"
+            class="absolute inset-0 hidden dark:block"
             style="
             background-image: url('./img/background-dark.png');
             background-size: 180px;
+            background-repeat: repeat;
+            background-position: center;
             transform: translateZ(0);
-            will-change: transform;
         ">
     </div>
 
-    <div class="absolute inset-0 bg-slate-400/50 dark:bg-slate-900/70"></div>
+    <div class="absolute inset-0 bg-gray-200/50 dark:bg-slate-800/60"></div>
 </div>
 
 <!-- Navigace  -->
@@ -133,7 +135,7 @@
 
 <!-- Hero sekce / O mně -->
 <section id="o-mne"
-         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-md">
+         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
     <div class="max-w-5xl mx-auto px-4">
         <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
             <div class="flex-1 text-center md:text-left">
@@ -154,7 +156,7 @@
 </section>
 
 <!-- Sekce Dovednosti (Grid layout) -->
-<section class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-md">
+<section class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
     <div class="max-w-5xl mx-auto px-4">
         <h3 class="text-2xl font-bold text-center mb-2">Dovednosti podle oblastí</h3>
         <div class="w-12 h-1 bg-indigo-500 mx-auto mb-10 rounded-full"></div>
@@ -212,7 +214,7 @@
 
 <!-- Sekce Projekty -->
 <section id="portfolio"
-         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-md">
+         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
     <div class="max-w-4xl mx-auto px-4">
         <h2 class="text-2xl font-bold text-center mb-2">Projekty</h2>
         <div class="w-12 h-1 bg-indigo-500 mx-auto mb-10 rounded-full"></div>
@@ -248,7 +250,7 @@
 
 <!-- Mobilní kontakty / patička -->
 <section id="kontakt"
-         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-md">
+         class="bg-slate-500/50 dark:bg-slate-950/40 p-4 my-12 md:m-8 md:py-10 rounded-lg shadow-lg backdrop-blur-sm">
     <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-2xl font-bold mb-2">Kontakt</h2>
         <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
