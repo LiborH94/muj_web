@@ -44,7 +44,7 @@
         class="relative bg-slate-50/10 dark:bg-slate-900/10 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-300 overflow-x-hidden"
 >
 <!-- Navigace  -->
-<header x-data="{ open: false }" class="sticky top-0 z-50 backdrop-blur-lg bg-white/40 dark:bg-slate-900/40 border-b border-white/20 dark:border-slate-800/50 shadow-sm">    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header x-data="{ open: false }" class="sticky top-0 z-50 backdrop-blur-lg bg-white/40 dark:bg-slate-900/40 border-b border-white/20 dark:border-slate-800/50 shadow-sm">    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
 
         <!-- Logo & Jméno -->
@@ -277,7 +277,10 @@
 <script>
     AOS.init({
         duration: 800,
-        once: true
+        once: true,
+        disable: function() {
+            return window.innerWidth < 768;
+        }
     });
 </script>
 <script src="./js/script.js"></script>
